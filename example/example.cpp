@@ -11,6 +11,7 @@ void stdout_logger_example();
 void basic_example();
 void rotating_example();
 void daily_example();
+void hour_example();
 void async_example();
 void binary_example();
 void trace_example();
@@ -65,6 +66,7 @@ int main(int, char *[])
         basic_example();
         rotating_example();
         daily_example();
+        hour_example();
         async_example();
         binary_example();
         multi_sink_example();
@@ -122,6 +124,13 @@ void daily_example()
 {
     // Create a daily logger - a new file is created every day on 2:30am.
     auto daily_logger = spdlog::daily_logger_mt("daily_logger", "logs/daily.txt", 2, 30);
+}
+
+#include "spdlog/sinks/hour_file_sink.h"
+void hour_example()
+{
+    // Create a hour logger - a new file is created every hour on 0:00am.
+    auto hour_logger = spdlog::hour_logger_mt("hour_logger", "logs/hour.txt");
 }
 
 #include "spdlog/cfg/env.h"
